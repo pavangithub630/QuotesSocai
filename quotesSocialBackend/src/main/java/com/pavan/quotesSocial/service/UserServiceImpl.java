@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pavan.quotesSocial.Enitity.User;
+import com.pavan.quotesSocial.exceptions.UserException;
 import com.pavan.quotesSocial.repository.UserRepository;
 
 @Service
@@ -17,7 +18,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User addUser(User user) {
-		return userRepository.save(user);
+		return  userRepository.save(user);
+		
 	}
 
 	@Override
@@ -28,6 +30,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user) {
 		return userRepository.save(user);
+	}
+
+	@Override
+	public User findUserByUserId(long userId)throws UserException {
+		User user= userRepository.findById(userId).orElseThrow(()-> new UserException("User with that user id did not found"));
+		return user;
 	}
 	
 	

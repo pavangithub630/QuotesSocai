@@ -9,4 +9,5 @@ public interface UserService {
 	public abstract User addUser(User user);
 	public abstract List<User> getallusers();
 	public abstract User updateUser(User user);
+	public abstract User findUserByUserId(long userId);
 }
